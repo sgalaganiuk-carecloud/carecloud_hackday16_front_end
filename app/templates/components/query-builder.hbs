@@ -1,3 +1,17 @@
 {{yield}}
 
-<button {{action "submit"}}>test</button>
+<div id="condition" class="row">
+  {{simple-dropdown options=scopes active=activeScope action='selectScope'}}
+</div>
+
+<button type="button" class=" col-sm-1 btn btn-secondary"{{action "appendCondition"}}>+</button>
+
+<div id="conditions">
+{{#each activeConditionsComputed as |condition index|}}
+  {{condition-builder condition=condition setConditionType=(action "setConditionTypeAtIndex" index)}}
+{{/each}}
+</div>
+
+
+
+<button class="btn btn-success" {{action "submit"}}>Search</button>

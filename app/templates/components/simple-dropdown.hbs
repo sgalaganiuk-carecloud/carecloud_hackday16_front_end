@@ -1,0 +1,10 @@
+<div class="col-sm-2 dropdown">
+  <button class="btn btn-info dropdown-toggle selected" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{capitalize active}}
+  </button>
+  <div class="dropdown-menu">
+    {{#each options as |option|}}
+      <a class="dropdown-item" href="#" {{action 'select' option}}>{{capitalize option}}</a>
+    {{/each}}
+  </div>
+</div>
