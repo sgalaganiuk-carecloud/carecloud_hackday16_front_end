@@ -7,7 +7,8 @@ export default Ember.Component.extend({
   },
   conditionBuilderMap: {
     appointment: "appointment-condition-builder",
-    balance: "balance-condition-builder"
+    balance: "simple-comparison-condition-builder",
+    age: "simple-comparison-condition-builder"
   },
   activeConditionType: Ember.computed('condition.type', function() {
     let condition = this.get('condition');
