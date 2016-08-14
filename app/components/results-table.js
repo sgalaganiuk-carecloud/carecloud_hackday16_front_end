@@ -26,7 +26,7 @@ export default Ember.Component.extend({
         name: d.appointment.patient.first_name,
         date: new Date(d.appointment.start_time),
         age: getAge(d.appointment.patient.date_of_birth),
-        balance: "$100",
+        balance: "$" + d.balance.map(x => parseInt(x.total)).reduce(function(x, y) { return x + y; }, 0),
         status: d.appointment.appointment_status.name
       };
     });
