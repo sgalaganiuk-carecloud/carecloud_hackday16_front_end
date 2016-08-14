@@ -1,4 +1,5 @@
 
-{{#if unset}}
   {{simple-dropdown options=conditionTypes active=activeConditionType action='selectConditionType'}}
-{{/if}}
+{{#unless unset}}
+  {{component conditionBuilderComponent condition=condition}}
+{{/unless}}

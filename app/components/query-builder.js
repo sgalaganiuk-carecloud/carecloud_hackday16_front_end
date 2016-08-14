@@ -32,28 +32,14 @@ export default Ember.Component.extend({
       this.sendAction("action", this.get("queryObject"));
     },
     selectScope(scope) {
-      Ember.set(this, "activeScope", scope)
-    },
-    addCondition(type, ...conditions) {
-
-      Ember.set(this, "activeConditions", this.get)
+      Ember.set(this, "activeScope", scope);
     },
     appendCondition() {
-      let activeConditions = this.get("activeConditions")
+      let activeConditions = this.get("activeConditions");
       activeConditions.push(Condition.create());
-      this.propertyWillChange('activeConditions')
-      this.set('activeConditions', activeConditions)
-      this.propertyDidChange('activeConditions')
-    },
-    setConditionTypeAtIndex(i, conditionType) {
-      let conditions = this.get('activeConditions');
-      conditions[i].set('type', conditionType);
-
-      Ember.Logger.debug("here", i, conditionType);
-
-      this.propertyWillChange('activeConditions')
-      this.set('activeConditions', conditions.slice())
-      this.propertyDidChange('activeConditions')
+      this.propertyWillChange('activeConditions');
+      this.set('activeConditions', activeConditions);
+      this.propertyDidChange('activeConditions');
     }
   }
 });
