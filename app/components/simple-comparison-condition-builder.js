@@ -23,8 +23,10 @@ export default Ember.Component.extend({
   actions: {
     setOperator(operator) {
       let condition = this.get('condition');
+      this.propertyWillChange('condition');
       condition.set('operator', operator);
       this.set('condition', condition);
+      this.propertyDidChange('condition');
     }
   }
 });
