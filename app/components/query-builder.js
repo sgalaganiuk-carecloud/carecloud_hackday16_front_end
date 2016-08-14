@@ -24,7 +24,18 @@ export default Ember.Component.extend({
   }),
 
   activeScope: "Appointments",
-  activeConditions: [],
+  activeConditions: [
+    Condition.create()
+  ],
+
+  remainingConditions: Ember.computed('activeConditions', function(){
+    let activeConditions = this.get('activeConditions');
+    return activeConditions.slice(1);
+  }),
+
+  firstCondition: Ember.computed('activeConditions', function(){
+    return this.get('activeConditions')[0];
+  }),
 
   scopes: ['appointments', 'patients', 'providers', 'balances'],
 
