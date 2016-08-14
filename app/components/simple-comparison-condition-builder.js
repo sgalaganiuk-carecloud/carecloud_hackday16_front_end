@@ -1,13 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  init() {
-    this._super(...arguments);
-    let condition = this.get('condition');
-    // if (!this.get('condition').get('operator')) {
-    //   condition.setProperties({ operator: '>', value: 0 });
-    // }
-  },
+  // init() {
+  //   this._super(...arguments);
+  //   let condition = this.get('condition');
+  //   if (!this.get('condition').get('operator')) {
+  //     // condition.setProperties({ operator: '>', value: 0 });
+  //   }
+  // },
   balanceOperators: ['<', '>', '=', '>=', '<='],
 
   value: Ember.computed('condition.value', {
