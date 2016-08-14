@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   actions: {
     handleMagicEntry() {
       this.sendAction('clearConditions');
-      let availableScopes = ['patients', 'appointments', 'providers', 'balances'];
+      let availableScopes = ['patients', 'appointments', 'providers', 'balances', 'statuses'];
 
       let value = this.get('value');
       if (value.includes(' with ')) {
@@ -46,12 +46,15 @@ export default Ember.Component.extend({
 
 function conditionFor(conditionString) {
   let words = conditionString.split(" ");
+  console.log(words);
+  console.log(type);
   let type = words[0];
   let prepareMap = {
     balance: prepareSimpleCondition,
     age: prepareSimpleCondition,
     appointment: prepareAppointment,
-    provider: prepareProvider
+    provider: prepareProvider,
+    status: prepareStatus
   };
   let availableConditionTypes = Object.keys(prepareMap);
 
@@ -81,7 +84,7 @@ function conditionFor(conditionString) {
         return condition;
 }
 
-  function prepareSimpleCondition(condition, words) {
+function prepareSimpleCondition(condition, words) {
     let [operator, value] = words.slice(1);
         condition.setProperties({operator, value});
         return condition;
@@ -91,5 +94,16 @@ function prepareProvider(condition, words) {
   let operator = '=';
   let value = words.slice(1).join(" ");
   condition.setProperties({operator, value});
+  return condition;
+}
+
+function prepareStatus(condition, words) {
+  let value = words.slice(1);
+  if (value.length > 1) {
+    value = value.join("_");
+  } else {
+    value = value[0];
+  }
+  condition.status = value;
   return condition;
 }

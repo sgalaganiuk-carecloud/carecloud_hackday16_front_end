@@ -33,7 +33,6 @@ export default Ember.Component.extend({
     get() {
       let operatorMap = this.get('operatorMap');
       let operator = this.get('condition').operator;
-      Ember.Logger.debug(operatorMap[operator]);
       return operatorMap[operator];
     },
 

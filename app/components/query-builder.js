@@ -37,7 +37,7 @@ export default Ember.Component.extend({
     return this.get('activeConditions')[0];
   }),
 
-  scopes: ['appointments', 'patients', 'providers', 'balances'],
+  scopes: ['appointments', 'patients', 'providers', 'balances', 'statuses'],
 
   actions: {
     submit() {

@@ -1,16 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  conditions: {
-    appointment: ['startDate', 'endDate'],
-    balance: ['operator', 'value'],
-    provider: ['operator', 'value']
-  },
+
   conditionBuilderMap: {
     appointment: "appointment-condition-builder",
     balance: "simple-comparison-condition-builder",
     age: "simple-comparison-condition-builder",
-    provider: "provider-condition-builder"
+    provider: "provider-condition-builder",
+    status: "status-condition-builder"
+
   },
   activeConditionType: Ember.computed('condition.type', function() {
     let condition = this.get('condition');
