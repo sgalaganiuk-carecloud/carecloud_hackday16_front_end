@@ -18,13 +18,5 @@ export default Ember.Component.extend({
     set(key, value) {
       this.get('condition').set('value', value);
     }
-  }),
-
-  actions: {
-    setOperator(operator) {
-      let condition = this.get('condition');
-      condition.set('operator', operator);
-      this.set('condition', condition);
-    }
-  }
+  })
 });
