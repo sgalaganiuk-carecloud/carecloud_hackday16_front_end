@@ -1,4 +1,5 @@
 export default function() {
+  this.passthrough('https://localhost:3000/query');
   this.get('https://nimbus.herokuapp.com/query', () => {
     let records = [
       {

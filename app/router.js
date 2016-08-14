@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('query', function() {
     this.route('result');
   });
+  this.route('home', {path: '/'} );
 });
 
 export default Router;
