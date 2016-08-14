@@ -5,27 +5,28 @@ const Condition = Ember.Object.extend({
 });
 
 export default Ember.Component.extend({
-  queryObject: {
-  "primaryScope": "patients",
-  "conditions": [
-    {
-      "type": "appointments",
-      "startDate": "2016-08-13",
-      "endDate": "2016-08-13"
-    },
-    {
-      "type": "balance",
-      "operator": ">",
-      "value": 0
-    }
-  ]
-},
-  scopes: ['appointments', 'patients', 'providers', 'balances'],
-  activeConditions: [],
-  activeConditionsComputed: Ember.computed('activeConditions.@each', function() {
-    return this.get('activeConditions');
+  queryObject: Ember.computed("activeScope", "activeConditions.@each", function() {
+    let result =  {
+      primaryScope: this.get('activeScope'),
+      conditions: []
+    };
+
+    for(let condition of this.get('activeConditions')) {
+      let conditionObject = {};
+      for (let property of Object.keys(condition)) {
+        conditionObject[property] = condition.get(property);
+      }
+      result.conditions.push(conditionObject);
+    }
+
+    Ember.Logger.debug(result);
+    return result;
   }),
+
   activeScope: "Appointments",
+  activeConditions: [],
+
+  scopes: ['appointments', 'patients', 'providers', 'balances'],
 
   actions: {
     submit() {
