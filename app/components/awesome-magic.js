@@ -45,43 +45,51 @@ export default Ember.Component.extend({
 });
 
 function conditionFor(conditionString) {
-  let availableConditionTypes = ["balance", 'appointment'];
+  let availableConditionTypes = ["balance", 'appointment', 'provider'];
   let words = conditionString.split(" ");
   let type = words[0];
   let prepareMap = {
     balance: prepareBalance,
-    appointment: prepareAppointment
-  }
+    appointment: prepareAppointment,
+    provider: prepareProvider
+  };
   if (availableConditionTypes.includes(type)) {
     let condition = Condition.create({ type });
     return prepareMap[type](condition, words);
   }
 }
 
-  function prepareAppointment(condition, words) {
-      let dateMap = {
-        past: {
-          operator: "<",
-          value: new Date()
-        },
-        today: {
-          operator: "=",
-          value: new Date()
-        },
-        future: {
-          operator: ">",
-          value: new Date()
-        }
-    };
-        condition.setProperties(dateMap[words[1]]);
-        return condition;
+function prepareAppointment(condition, words) {
+  let dateMap = {
+    past: {
+      operator: "<",
+      value: new Date()
+    },
+    today: {
+      operator: "=",
+      value: new Date()
+    },
+    future: {
+      operator: ">",
+      value: new Date()
+    }
+  };
+  condition.setProperties(dateMap[words[1]]);
+  return condition;
 }
 
-  function prepareBalance(condition, words) {
-    let [operator, value] = words.slice(1);
-        condition.setProperties({operator, value});
-        return condition;
-  }
+function prepareBalance(condition, words) {
+  let [operator, value] = words.slice(1);
+  condition.setProperties({operator, value});
+  return condition;
+}
+
+function prepareProvider(condition, words) {
+  let operator = '=';
+  let value = words.slice(1).join(" ");
+  condition.setProperties({operator, value});
+  return condition;
+}
 
 
 
