@@ -4,9 +4,9 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     let condition = this.get('condition');
-    if (!this.get('condition').get('operator')) {
-      condition.setProperties({ operator: '>', value: 0 });
-    }
+    // if (!this.get('condition').get('operator')) {
+    //   condition.setProperties({ operator: '>', value: 0 });
+    // }
   },
   balanceOperators: ['<', '>', '=', '>=', '<='],
 
@@ -23,8 +23,10 @@ export default Ember.Component.extend({
   actions: {
     setOperator(operator) {
       let condition = this.get('condition');
+      this.propertyWillChange('condition');
       condition.set('operator', operator);
       this.set('condition', condition);
+      this.propertyDidChange('condition');
     }
   }
 });
