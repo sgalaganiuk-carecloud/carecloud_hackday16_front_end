@@ -6,11 +6,13 @@
     </div>
 
     <div class="col-xs-1 query-word">
-      WITH
+      {{if firstCondition "WITH"}}
     </div>
 
     <div class="col-xs-5">
+    {{#if firstCondition}}
       {{condition-builder condition=firstCondition}}
+    {{/if}}
     </div>
     <div class="col-xs-1">
       {{!-- <span {{action "appendCondition"}}>{{fa-icon "plus fa-3x"}}</span> --}}

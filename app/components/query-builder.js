@@ -57,7 +57,7 @@ export default Ember.Component.extend({
     clearConditions() {
       this.propertyWillChange('activeConditions');
       this.set('activeConditions', [
-        Condition.create()
+        // Condition.create()
       ]);
       this.propertyDidChange('activeConditions');
     },

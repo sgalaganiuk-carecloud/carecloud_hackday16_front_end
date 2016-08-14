@@ -4,7 +4,9 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     let condition = this.get('condition');
-    condition.setProperties({ operator: '>', value: 0 });
+    if (!this.get('condition').get('operator')) {
+      condition.setProperties({ operator: '>', value: 0 });
+    }
   },
   balanceOperators: ['<', '>', '=', '>=', '<='],
 
