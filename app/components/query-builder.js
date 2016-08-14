@@ -33,7 +33,7 @@ export default Ember.Component.extend({
     return activeConditions.slice(1);
   }),
 
-  firstCondition: Ember.computed('activeConditions', function(){
+  firstCondition: Ember.computed('activeConditions.[]', function(){
     return this.get('activeConditions')[0];
   }),
 
@@ -56,10 +56,13 @@ export default Ember.Component.extend({
     },
     clearConditions() {
       this.propertyWillChange('activeConditions');
-      this.set('activeConditions', []);
+      this.set('activeConditions', [
+        Condition.create()
+      ]);
       this.propertyDidChange('activeConditions');
     },
     setConditions(conditions) {
+      // console.log("after send:", conditions);
       this.propertyWillChange('activeConditions');
       this.set('activeConditions', conditions);
       this.propertyDidChange('activeConditions');

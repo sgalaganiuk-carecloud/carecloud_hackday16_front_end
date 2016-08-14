@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   init() {
     this._super(...arguments);
-    this.set('active', 'today');
-
+    if (!this.get('condition').get('operator')) {
+      this.set('active', 'today');
+    }
   },
   dates: ["past", "today", "future"],
   dateMap: {
