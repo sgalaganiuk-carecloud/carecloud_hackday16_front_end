@@ -45,14 +45,16 @@ export default Ember.Component.extend({
 });
 
 function conditionFor(conditionString) {
+  let words = conditionString.split(" ");
+  let type = words[0];
   let prepareMap = {
     balance: prepareSimpleCondition,
     age: prepareSimpleCondition,
-    appointment: prepareAppointment
+    appointment: prepareAppointment,
+    provider: prepareProvider
   };
   let availableConditionTypes = Object.keys(prepareMap);
-  let words = conditionString.split(" ");
-  let type = words[0];
+
 
   if (availableConditionTypes.includes(type)) {
     let condition = Condition.create({ type });
@@ -84,3 +86,10 @@ function conditionFor(conditionString) {
         condition.setProperties({operator, value});
         return condition;
   }
+
+function prepareProvider(condition, words) {
+  let operator = '=';
+  let value = words.slice(1).join(" ");
+  condition.setProperties({operator, value});
+  return condition;
+}
