@@ -12,5 +12,14 @@ export default Ember.Component.extend({
       props.push(key);
     });
     return props;
+  }),
+
+  scope: Ember.computed('query', function(){
+    let scope = $('#scope').find('button').html();
+    return scope;
   })
+
+  // values: Ember.computed('data', function() {
+
+  // })
 });
