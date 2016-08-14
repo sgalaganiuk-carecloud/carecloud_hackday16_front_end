@@ -1,5 +1,8 @@
-
-  {{simple-dropdown options=conditionTypes active=activeConditionType action='selectConditionType'}}
-{{#unless unset}}
-  {{component conditionBuilderComponent condition=condition}}
-{{/unless}}
+<form class="form-inline">
+    <div class="form-group">
+    {{simple-dropdown options=conditionTypes active=activeConditionType action='selectConditionType'}}
+    </div>
+  {{#unless unset}}
+    {{component conditionBuilderComponent condition=condition class='form-group'}}
+  {{/unless}}
+</form>

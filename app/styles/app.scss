@@ -1,2 +1,22 @@
 @import 'bower_components/bootstrap/scss/bootstrap';
-@import 'results-table'
+@import 'results-table';
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 25px;
+  background-color: #E5E5E5;
+}
+
+.query-word {
+  font-weight: 900;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.row {
+  margin-bottom: 5px;
+}

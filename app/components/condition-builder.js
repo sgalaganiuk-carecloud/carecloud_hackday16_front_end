@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  activeConditions: [],
   conditions: {
     appointment: ['startDate', 'endDate'],
     balance: ['operator', 'value']
