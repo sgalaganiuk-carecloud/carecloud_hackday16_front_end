@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     return condition.type === 'select condition';
   }),
   conditionTypes: Ember.computed('conditions', function() {
-    return Object.keys(this.get('conditions'));
+    return Object.keys(this.get('conditionBuilderMap'));
   }),
   conditionBuilderComponent: Ember.computed('condition.type', function() {
     let condition = this.get('condition');
