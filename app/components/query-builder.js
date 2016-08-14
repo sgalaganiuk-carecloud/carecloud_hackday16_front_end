@@ -28,7 +28,7 @@ export default Ember.Component.extend({
     Condition.create()
   ],
 
-  remainingConditions: Ember.computed('activeConditions', function(){
+  remainingConditions: Ember.computed('activeConditions.[]', function(){
     let activeConditions = this.get('activeConditions');
     return activeConditions.slice(1);
   }),
@@ -47,10 +47,21 @@ export default Ember.Component.extend({
       Ember.set(this, "activeScope", scope);
     },
     appendCondition() {
+      console.log('appending condition');
       let activeConditions = this.get("activeConditions");
       activeConditions.push(Condition.create());
       this.propertyWillChange('activeConditions');
       this.set('activeConditions', activeConditions);
+      this.propertyDidChange('activeConditions');
+    },
+    clearConditions() {
+      this.propertyWillChange('activeConditions');
+      this.set('activeConditions', []);
+      this.propertyDidChange('activeConditions');
+    },
+    setConditions(conditions) {
+      this.propertyWillChange('activeConditions');
+      this.set('activeConditions', conditions);
       this.propertyDidChange('activeConditions');
     }
   }
