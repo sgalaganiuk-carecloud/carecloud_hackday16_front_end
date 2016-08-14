@@ -1,36 +1,57 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  init() {
+    this._super(...arguments);
+    this.set('active', 'today');
 
-  startDate: Ember.computed('condition.startDate', {
+  },
+  dates: ["past", "today", "future"],
+  dateMap: {
+    past: {
+      operator: "<",
+      value: new Date()
+    },
+    today: {
+      operator: "=",
+      value: new Date()
+    },
+    future: {
+      operator: ">",
+      value: new Date()
+    }
+  },
+
+  operatorMap: {
+    "<": "past",
+    "=": "today",
+    ">": "future"
+  },
+
+  active: Ember.computed('condition.operator', {
     get() {
-      return this.get('condition').get('startDate') || new Date();
+      let operatorMap = this.get('operatorMap');
+      let operator = this.get('condition').operator;
+      Ember.Logger.debug(operatorMap[operator]);
+      return operatorMap[operator];
     },
 
-    set(key, startDate) {
-      this.get('condition').set('startDate', startDate);
+    set(key, value) {
+      let condition = this.get('condition');
+      let dateMap = this.get('dateMap');
+      condition.setProperties(dateMap[value]);
+      this.propertyWillChange('condition');
+      this.set('condition', condition);
+      this.propertyDidChange('condition');
+      return value;
     }
   }),
-  endDate: Ember.computed('condition.endDate', {
-    get() {
-      return this.get('condition').get('endDate') || new Date();
-    },
 
-    set(key, endDate) {
-      this.get('condition').set('endDate', endDate);
-    }
-  }),
+
 
   actions: {
-    setStartDate(date) {
-      let condition = this.get('condition');
-      condition.set('startDate', date);
-      this.set('condition', condition);
-    },
-    setEndDate(date) {
-      let condition = this.get('condition');
-      condition.set('endDate', date);
-      this.set('condition', condition);
+    setDate(timeline) {
+      this.set('active', timeline);
     }
   }
 
