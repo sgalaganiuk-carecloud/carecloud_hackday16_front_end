@@ -14,9 +14,9 @@ export default Ember.Component.extend({
     return condition.type;
   }),
 
-  unset: Ember.computed('condition.type', function() {
+  selectCondition: Ember.computed('condition.type', function() {
     let condition = this.get('condition');
-    return condition.type === 'unset';
+    return condition.type === 'select condition';
   }),
   conditionTypes: Ember.computed('conditions', function() {
     return Object.keys(this.get('conditions'));

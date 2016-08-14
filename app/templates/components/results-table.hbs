@@ -1,26 +1,28 @@
-<div class="container">
-  <table class="table table-bordered table-striped table-hover">
-    <thead>
-      <tr>
-        {{!-- loop thru the keys and a header for each key --}}
-        {{#each properties as |prop|}}
-          <th>
-            <td>{{prop}}</td>
-          </th>
-        {{/each}}
-      </tr>
-    </thead>
+<div class="container-fluid">
+  <div class="row">
+    <table class="col-xs-6 offset-xs-1 table table-hover">
+      <thead>
+        <tr>
+          {{!-- loop thru the keys and a header for each key --}}
+          {{#each properties as |prop|}}
+            <th class="result-table-head">
+              <td>{{prop}}</td>
+            </th>
+          {{/each}}
+        </tr>
+      </thead>
 
-    <tbody>
-      {{!-- one row for each model object --}}
-      {{#each data as |record|}}
-      <tr>
-        {{!-- and one column for each model value --}}
-        {{#each-in record as |key value|}}
-          <td>{{value}}</td>
-        {{/each-in}}
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      <tbody class="result-table-body">
+        {{!-- one row for each model object --}}
+        {{#each data as |record|}}
+        <tr>
+          {{!-- and one column for each model value --}}
+          {{#each-in record as |key value|}}
+            <td>{{value}}</td>
+          {{/each-in}}
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>

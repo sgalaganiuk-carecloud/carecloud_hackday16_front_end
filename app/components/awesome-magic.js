@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const Condition = Ember.Object.extend({
-  type: 'unset'
+  type: 'select condition'
 });
 
 export default Ember.Component.extend({

@@ -1,8 +1,13 @@
 @import 'bower_components/bootstrap/scss/bootstrap';
 @import 'results-table';
 
+.container {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .container h1 {
-  text-align: center;
   margin-bottom: 30px;
   margin-top: 10px;
 }
@@ -21,3 +26,54 @@
 .row {
   margin-bottom: 5px;
 }
+
+
+#nimbus-nav {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #009bde;
+  color: white;
+  font-family: "verdana";
+}
+
+#nimbus-search {
+  font-size: 18px;
+  border: none;
+  border-bottom: solid 1px #31b0d5;
+  padding: 2%;
+  margin-bottom: 8%;
+  transition: border-bottom 0.3s ease,
+              padding 0.5s ease;
+}
+
+#nimbus-search:focus {
+    padding: 4%;
+    outline: none;
+    border-bottom: 3px solid #31b0d5;
+}
+
+.query-body {
+  margin-top: 12%;
+}
+
+.btn-info {
+  background-color: #31b0d5;
+}
+
+.result-table-head {
+  background-color: #31b0d5;
+  color: white;
+  border: none;
+}
+
+.result-table-head td {
+  border: none;
+  font-size: 18px;
+}
+
+.result-table-body td{
+  background-color: white;
+}
+
+

@@ -1,37 +1,44 @@
-{{awesome-magic activeScope=activeScope activeConditions=activeConditions action="appendCondition" clearConditions="clearConditions" setConditions="setConditions"}}
-<div class="card">
+<div class="container query-body">
   <div class="row">
-    <div class="col-xs-2">
-      {{simple-dropdown options=scopes active=activeScope action='selectScope'}}
-    </div>
+    <div class="col-xs-12 offset-xs-1">
+    {{awesome-magic activeScope=activeScope activeConditions=activeConditions action="appendCondition" clearConditions="clearConditions" setConditions="setConditions"}}
+    <div class="card">
+      <div class="row">
+        <div class="col-xs-2">
+          {{simple-dropdown options=scopes active=activeScope action='selectScope'}}
+        </div>
 
-    <div class="col-xs-1 query-word">
-      {{if firstCondition "WITH"}}
-    </div>
+        <div class="col-xs-1 query-word">
+          {{if firstCondition "WITH"}}
+        </div>
 
-    <div class="col-xs-5">
-    {{#if firstCondition}}
-      {{condition-builder condition=firstCondition}}
-    {{/if}}
+        <div class="col-xs-5">
+        {{#if firstCondition}}
+          {{condition-builder condition=firstCondition}}
+        {{/if}}
+        </div>
+        <div class="col-xs-1">
+          {{!-- <span {{action "appendCondition"}}>{{fa-icon "plus fa-3x"}}</span> --}}
+          <button type="button" class="btn btn-info"{{action "appendCondition"}}>{{fa-icon "plus"}}</button>
+        </div>
+        <div class="col-xs-1">
+          <button class="btn btn-success" {{action "submit"}}>Search</button>
+        </div>
+      </div>
+
+
+      {{#each remainingConditions as |condition|}}
+        <div class="row">
+          <div class="col-xs-1 offset-xs-2 query-word">
+            AND
+          </div>
+          <div class="col-xs-5">
+            {{condition-builder condition=condition}}
+          </div>
+        </div>
+      {{/each}}
     </div>
-    <div class="col-xs-1">
-      {{!-- <span {{action "appendCondition"}}>{{fa-icon "plus fa-3x"}}</span> --}}
-      <button type="button" class="btn btn-info"{{action "appendCondition"}}>{{fa-icon "plus"}}</button>
-    </div>
-    <div class="col-xs-1">
-      <button class="btn btn-success" {{action "submit"}}>Search</button>
     </div>
   </div>
-
-
-  {{#each remainingConditions as |condition|}}
-    <div class="row">
-      <div class="col-xs-1 offset-xs-2 query-word">
-        AND
-      </div>
-      <div class="col-xs-5">
-        {{condition-builder condition=condition}}
-      </div>
-    </div>
-  {{/each}}
 </div>
+

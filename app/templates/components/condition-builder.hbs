@@ -2,7 +2,7 @@
     <div class="form-group">
     {{simple-dropdown options=conditionTypes active=activeConditionType action='selectConditionType'}}
     </div>
-  {{#unless unset}}
+  {{#unless selectCondition}}
     {{component conditionBuilderComponent condition=condition class='form-group'}}
   {{/unless}}
 </form>
