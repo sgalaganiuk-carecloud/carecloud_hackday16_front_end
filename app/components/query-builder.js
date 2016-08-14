@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     return result;
   }),
 
-  activeScope: "Appointments",
+  activeScope: 'patients',
   activeConditions: [
     Condition.create()
   ],
